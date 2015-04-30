@@ -8,6 +8,9 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
+    @array_chart = [] 
+
+
     @numberPushEvent = Event.where(type: 'PushEvent').count
     @numberIssueCommentEvent = Event.where(type: 'IssueCommentEvent').count
     @numberIssuesEvent = Event.where(type: 'IssuesEvent').count
@@ -16,13 +19,32 @@ class EventsController < ApplicationController
     @numberPullRequestEvent = Event.where(type: 'PullRequestEvent').count
     @numberDeleteEvent = Event.where(type: 'DeleteEvent').count
 
+    @numberPrivateEvent = Event.where(public: 'false')
+    @numberPublicEvent = Event.where(public: 'true')
 
-    @chart = GChart.pie(:width =>500,
+    print 'number de ouf: '
+    print @numberPublicEvent
+
+
+    @chartGlobal = GChart.pie(:width =>500,
      :height => 500,
      :data => [@numberPushEvent, @numberIssuesEvent,
-     @numberCreateEvent, @numberWatchEvent,@numberIssueCommentEvent,@numberPullRequestEvent,@numberDeleteEvent],
-     :extras => { "chdl" => "PushEvent|IssueCommentEvent|IssuesEvent|CreateEvent|WatchEvent|PullRequestEvent|DeleteEvent"}
-     ).to_url
+       @numberCreateEvent, @numberWatchEvent,@numberIssueCommentEvent,@numberPullRequestEvent,@numberDeleteEvent],
+       :extras => { "chdl" => "PushEvent|IssueCommentEvent|IssuesEvent|CreateEvent|WatchEvent|PullRequestEvent|DeleteEvent"}
+       ).to_url
+
+    @array_chart.push(@chartGlobal)
+
+    # @chartPrivate = GChart.bar(:width =>500,
+    #  :height => 500,
+    #  :data => [@numberPrivateEvent, @numberPublicEvent]).to_url  
+
+    # @array_chart.push(@chartPrivate)
+
+
+    @array_chart 
+
+
 
 
   end
