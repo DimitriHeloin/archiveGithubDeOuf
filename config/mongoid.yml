@@ -1,0 +1,11 @@
+development:
+  # Configure available database sessions. (required)
+  sessions:
+    # Defines the default session. (required)
+    default:
+      uri: mongodb://team:team@ds049661.mongolab.com:49661/dashboard-de-ouf
+test:
+  sessions:
+    default:
+      uri: mongodb://team:team@ds049661.mongolab.com:49661/dashboard-de-ouf
+

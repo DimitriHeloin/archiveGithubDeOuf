@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @org.id %>
+</p>
+
+<p>
+  <strong>Login:</strong>
+  <%= @org.login %>
+</p>
+
+<p>
+  <strong>Gravatar:</strong>
+  <%= @org.gravatar_id %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @org.url %>
+</p>
+
+<p>
+  <strong>Avatar url:</strong>
+  <%= @org.avatar_url %>
+</p>
+
+<%= link_to 'Edit', edit_org_path(@org) %> |
+<%= link_to 'Back', orgs_path %>
