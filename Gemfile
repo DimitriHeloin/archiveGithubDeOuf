@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem "chartkick"
 gem "gchart"
+# gem 'google-charts-on-rails'
 
 gem 'better_errors'
 gem 'binding_of_caller'

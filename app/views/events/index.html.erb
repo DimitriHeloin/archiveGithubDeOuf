@@ -1,8 +1,8 @@
-require 'gchart'
 
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Events</h1>
+<%= image_tag(@chart) %>
 
 <table>
   <thead>
@@ -15,7 +15,7 @@ require 'gchart'
   </thead>
 
   <tbody>
-    <!-- <% @events.each do |event| %>
+    <% @events.each do |event| %>
       <tr>
         <td><%= event.id %></td>
         <td><%= event.type %></td>
@@ -24,14 +24,12 @@ require 'gchart'
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %> -->
-
-<!--    <%= pie_chart  Events.group(:type) %>
- -->   <%= pie_chart({"Football" => 10, "Basketball" => 5}) %>
-   <% Gchart.line(:data => [0, 40, 10, 70, 20])%>
+    <% end %>
 
   </tbody>
 </table>
 
 <br>
+
+
 <%= link_to 'New Event', new_event_path %>

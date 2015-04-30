@@ -1,3 +1,5 @@
+require 'gchart'
+
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -5,6 +7,24 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+
+    @numberPushEvent = Event.where(type: 'PushEvent').count
+    @numberIssueCommentEvent = Event.where(type: 'IssueCommentEvent').count
+    @numberIssuesEvent = Event.where(type: 'IssuesEvent').count
+    @numberCreateEvent = Event.where(type: 'CreateEvent').count
+    @numberWatchEvent = Event.where(type: 'WatchEvent').count
+    @numberPullRequestEvent = Event.where(type: 'PullRequestEvent').count
+    @numberDeleteEvent = Event.where(type: 'DeleteEvent').count
+
+
+    @chart = GChart.pie(:width =>500,
+     :height => 500,
+     :data => [@numberPushEvent, @numberIssuesEvent,
+     @numberCreateEvent, @numberWatchEvent,@numberIssueCommentEvent,@numberPullRequestEvent,@numberDeleteEvent],
+     :extras => { "chdl" => "PushEvent|IssueCommentEvent|IssuesEvent|CreateEvent|WatchEvent|PullRequestEvent|DeleteEvent"}
+     ).to_url
+
+
   end
 
   # GET /events/1
@@ -71,4 +91,4 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:id, :type, :public)
     end
-end
+  end
